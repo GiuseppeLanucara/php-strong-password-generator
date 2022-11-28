@@ -1,4 +1,5 @@
 <?php
+session_start();
 $pswd_lgt = $_GET["pswd"] ?? "";
 include __DIR__ . "/partials/functions.php";
 
@@ -8,6 +9,7 @@ if ($pswd_lgt === "") {
     $casual_pswd = randomPassword($pswd_lgt);
 }
 
+$_SESSION['pswd'] = $casual_pswd;
 ?>
 
 
@@ -31,9 +33,17 @@ if ($pswd_lgt === "") {
             <input type="text" name="pswd" id="password">
             <button type="submit">Invia</button>
             <button type="reset">Reset</button>
-            <h4><?php echo $casual_pswd; ?></h4>
         </form>
+        <a href="pswd.php">Scopri la tua Password</a>
     </section>
+    <div class="alert <?php echo $pswd_lgt !== "" ? "alert-success" : "alert-danger" ?>">
+        <?php if ($pswd_lgt === "") {
+            echo "inserisci di quanti caratteri vuoi sia lunga la tua password";
+        } else {
+            echo "Password generata. Clicca su Scopri Password per vederla!";
+        }
+        ?>
+    </div>
 </body>
 
 </html>
