@@ -3,7 +3,7 @@ $pswd_lgt = $_GET["pswd"] ?? "";
 include __DIR__ . "/partials/functions.php";
 
 if ($pswd_lgt === "") {
-    $pswd_lgt = "";
+    $casual_pswd = "";
 } else {
     $casual_pswd = randomPassword($pswd_lgt);
 }
